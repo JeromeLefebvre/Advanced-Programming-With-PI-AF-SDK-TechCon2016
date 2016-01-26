@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex3-Real-Time-Calculations-Sln", "Ex3-Real-Time-Data-Analysis\Ex3-Real-Time-Calculations-Sln.csproj", "{1916F548-0AEE-4B9E-8634-7947070B2851}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex3-Real-Time-Asset-Ranking-Sln", "Ex3-Real-Time-Data-Analysis\Ex3-Real-Time-Asset-Ranking-Sln.csproj", "{1916F548-0AEE-4B9E-8634-7947070B2851}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "External", "External\External.csproj", "{6BE86080-890F-4120-AF47-3869E1F49DE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex3-Real-Time-Calculations", "Ex3-Real-Time-Rankings\Ex3-Real-Time-Calculations.csproj", "{5FD5E6DC-8866-4AFF-A06B-32F03FA46825}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex3-Real-Time-Asset-Ranking", "Ex3-Real-Time-Rankings\Ex3-Real-Time-Asset-Ranking.csproj", "{5FD5E6DC-8866-4AFF-A06B-32F03FA46825}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

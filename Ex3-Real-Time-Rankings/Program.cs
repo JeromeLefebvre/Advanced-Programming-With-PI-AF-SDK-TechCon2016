@@ -14,7 +14,7 @@ namespace Ex3_Real_Time_Rankings
     {
         static void Main(string[] args)
         {
-            PISystem ps = PISystem.CreatePISystem(Constants.AFSERVERNAME);
+            PISystem ps = PISystem.CreatePISystem(Constants.AFSERVERNAME); // This factory method is new in 2.7.5
             AFDatabase db = ps.Databases["FeederVoltageMonitoring"];
             AFAttributeTemplate attrTemp = db.ElementTemplates["Feeder"].AttributeTemplates["Reactive Power"];
 
@@ -34,7 +34,7 @@ namespace Ex3_Real_Time_Rankings
                 Console.WriteLine();
             }
 
-            // Remove the server-side signup.
+            // Remove unmanaged resources and server-side signup.
             rankProvider.Dispose();
 
             Console.WriteLine("Press any key to quit");
