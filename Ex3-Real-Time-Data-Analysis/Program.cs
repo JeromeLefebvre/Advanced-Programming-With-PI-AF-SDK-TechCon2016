@@ -14,7 +14,7 @@ namespace Ex3_Real_Time_Data_Analysis
         static void Main(string[] args)
         {
             PISystem ps = PISystem.CreatePISystem(Constants.AFSERVERNAME);
-            AFDatabase db = ps.Databases["FeederVoltageMonitoring"];
+            AFDatabase db = ps.Databases["Feeder Voltage Monitoring"];
             AFAttributeTemplate attrTemp = db.ElementTemplates["Feeder"].AttributeTemplates["Reactive Power"];
 
             AssetRankProvider rankProvider = new AssetRankProvider(attrTemp);

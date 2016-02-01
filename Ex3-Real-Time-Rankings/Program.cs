@@ -15,7 +15,7 @@ namespace Ex3_Real_Time_Rankings
         static void Main(string[] args)
         {
             PISystem ps = PISystem.CreatePISystem(Constants.AFSERVERNAME); // This factory method is new in 2.7.5
-            AFDatabase db = ps.Databases["FeederVoltageMonitoring"];
+            AFDatabase db = ps.Databases["Feeder Voltage Monitoring"];
             AFAttributeTemplate attrTemp = db.ElementTemplates["Feeder"].AttributeTemplates["Reactive Power"];
 
             AssetRankProvider rankProvider = new AssetRankProvider(attrTemp);
