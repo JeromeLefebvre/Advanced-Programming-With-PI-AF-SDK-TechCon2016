@@ -10,7 +10,7 @@ using OSIsoft.AF.Asset;
 using OSIsoft.AF.Data;
 
 
-namespace Ex3_Real_Time_Data_Analysis
+namespace Ex3_Real_Time_Analytics_Sln
 {
     public class AssetRankProvider : IObserver<AFDataPipeEvent>, IRankProvider
     {
@@ -229,7 +229,7 @@ namespace Ex3_Real_Time_Data_Analysis
         {
             if (val1.ValueTypeCode != val2.ValueTypeCode)
             {
-                throw new ArgumentException("Types of inputs do not match");
+                throw new InvalidOperationException("Types of inputs do not match");
             }
 
             if (val1.ValueTypeCode == TypeCode.Double)
@@ -246,7 +246,7 @@ namespace Ex3_Real_Time_Data_Analysis
             }
             else
             {
-                throw new ArgumentException("Cannot compare type {0}", val1.ValueType.Name);
+                throw new InvalidOperationException(string.Format("Cannot compare type {0}", val1.ValueType.Name));
             }
         }
     }

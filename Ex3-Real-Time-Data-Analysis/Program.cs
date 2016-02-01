@@ -7,7 +7,7 @@ using OSIsoft.AF;
 using OSIsoft.AF.Asset;
 using External;
 
-namespace Ex3_Real_Time_Data_Analysis
+namespace Ex3_Real_Time_Analytics_Sln
 {
     class Program
     {

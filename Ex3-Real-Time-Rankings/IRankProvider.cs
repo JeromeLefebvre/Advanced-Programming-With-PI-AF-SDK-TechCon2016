@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using OSIsoft.AF.Asset;
 using OSIsoft.AF.Data;
 
-namespace Ex3_Real_Time_Rankings
+namespace Ex3_Real_Time_Analytics
 {
     interface IRankProvider : IDisposable
     {

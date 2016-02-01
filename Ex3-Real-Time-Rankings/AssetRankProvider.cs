@@ -8,7 +8,7 @@ using OSIsoft.AF;
 using OSIsoft.AF.Asset;
 using OSIsoft.AF.Data;
 
-namespace Ex3_Real_Time_Rankings
+namespace Ex3_Real_Time_Analytics
 {
     public class AssetRankProvider : IObserver<AFDataPipeEvent>, IRankProvider
     {

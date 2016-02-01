@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OSIsoft.AF.Asset;
 
-namespace Ex3_Real_Time_Rankings
+namespace Ex3_Real_Time_Analytics
 {
     public class AFRankedValue
     {

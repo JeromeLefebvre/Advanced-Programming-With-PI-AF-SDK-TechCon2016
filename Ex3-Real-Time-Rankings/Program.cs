@@ -8,7 +8,7 @@ using OSIsoft.AF;
 using OSIsoft.AF.Asset;
 using External;
 
-namespace Ex3_Real_Time_Rankings
+namespace Ex3_Real_Time_Analytics
 {
     class Program
     {
