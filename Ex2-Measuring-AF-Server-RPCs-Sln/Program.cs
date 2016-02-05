@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OSIsoft.AF;
 using OSIsoft.AF.Asset;
-using OSIsoft.AF.Search;
 using External;
 
 namespace Ex2_Measuring_AF_Client_Performance_Sln
