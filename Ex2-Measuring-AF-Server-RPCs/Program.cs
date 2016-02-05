@@ -8,7 +8,7 @@ using OSIsoft.AF.Asset;
 using External;
 using OSIsoft.AF.Search;
 
-namespace Ex2_Measuring_AF_Server_RPCs
+namespace Ex2_Measuring_AF_Client_Performance
 {
     class Program
     {
