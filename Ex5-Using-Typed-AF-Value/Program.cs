@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using OSIsoft.AF.Asset;
+using OSIsoft.AF.Time;
 
 namespace Ex5_New_Features_In_PI_AF_SDK
 {
@@ -11,7 +12,12 @@ namespace Ex5_New_Features_In_PI_AF_SDK
         {
             Random rnd = new Random(10);
 
-            List<AFValue> valuesToSort = Enumerable.Range(0, 10).Select(i => new AFValue(rnd.Next(100))).ToList();
+            // Change the line below to use the AFValue.Create instead of "new AFValue"
+            List<AFValue> valuesToSort = Enumerable.Range(0, 10).Select(i => new AFValue(
+                attribute: null,
+                newValue: rnd.Next(100),
+                timestamp: new AFTime(DateTime.Today.AddSeconds(i))))
+                .ToList();
 
             valuesToSort.Sort(new AFValueComparer());
 

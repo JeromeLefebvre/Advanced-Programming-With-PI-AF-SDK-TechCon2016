@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using OSIsoft.AF.Asset;
+using OSIsoft.AF.Time;
 
 namespace Ex5_New_Features_In_PI_AF_SDK_Sln
 {
@@ -11,7 +12,12 @@ namespace Ex5_New_Features_In_PI_AF_SDK_Sln
         {
             Random rnd = new Random(10);
 
-            List<AFValue> valuesToSort = Enumerable.Range(0, 10).Select(i => new AFValue(rnd.Next(100))).ToList();
+            // Generate 10 random double values between 0 and 100 with timestamps every 1 second from midnight today
+            List<AFValue> valuesToSort = Enumerable.Range(0, 10).Select(i => AFValue.Create(
+                attribute: null, 
+                value: rnd.Next(100), 
+                timestamp: new AFTime(DateTime.Today.AddSeconds(i))))
+                .ToList();
 
             valuesToSort.Sort(new AFValueComparer());
 
@@ -19,7 +25,7 @@ namespace Ex5_New_Features_In_PI_AF_SDK_Sln
             {
                 if (val.ValueTypeCode == TypeCode.Int32) // should not be false in this case
                 {
-                    Console.WriteLine(val.ValueAsInt32());
+                    Console.WriteLine("Timestamp: {0}, Value: {1}", val.Timestamp, val.ValueAsInt32());
                 }
                 
             }
