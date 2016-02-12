@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="AFDataObserver.cs" />
     <Compile Include="AFProbe.cs" />
-    <Compile Include="Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

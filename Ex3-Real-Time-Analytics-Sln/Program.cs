@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading;
 using OSIsoft.AF;
 using OSIsoft.AF.Asset;
-using External;
 
 namespace Ex3_Real_Time_Analytics_Sln
 {
@@ -12,7 +11,7 @@ namespace Ex3_Real_Time_Analytics_Sln
     {
         static void Main(string[] args)
         {
-            PISystem ps = PISystem.CreatePISystem(Constants.AFSERVERNAME);
+            PISystem ps = PISystem.CreatePISystem("PISRV01");
             AFDatabase db = ps.Databases["Feeder Voltage Monitoring"];
             AFAttributeTemplate attrTemp = db.ElementTemplates["Feeder"].AttributeTemplates["Reactive Power"];
 

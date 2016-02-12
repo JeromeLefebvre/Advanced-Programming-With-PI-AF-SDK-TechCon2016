@@ -10,7 +10,7 @@ namespace Ex2_Measuring_AF_Client_Performance_Sln
     {
         static void Main(string[] args)
         {
-            PISystem ps = PISystem.CreatePISystem(Constants.AFSERVERNAME);
+            PISystem ps = PISystem.CreatePISystem("PISRV01");
 
             string path = @"\Feeder Voltage Monitoring\Assets";
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using OSIsoft.AF;
 using OSIsoft.AF.Asset;
 using OSIsoft.AF.Search;
@@ -10,7 +11,7 @@ namespace Ex2_Measuring_AF_Client_Performance
     {
         static void Main(string[] args)
         {
-            PISystem ps = PISystem.CreatePISystem(Constants.AFSERVERNAME);
+            PISystem ps = PISystem.CreatePISystem("PISRV01");
             AFDatabase db = ps.Databases["Feeder Voltage Monitoring"];
 
             AFElementTemplate elemTemplate = db.ElementTemplates["Substation Transformer"];

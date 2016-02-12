@@ -10,7 +10,7 @@ namespace Ex5_New_Features_In_PI_AF_SDK_Sln
         {
             if (val1.ValueTypeCode != val2.ValueTypeCode)
             {
-                throw new InvalidOperationException("Types of inputs do not match");
+                throw new InvalidOperationException("Value types do not match");
             }
 
             if (val1.ValueTypeCode == TypeCode.Double)

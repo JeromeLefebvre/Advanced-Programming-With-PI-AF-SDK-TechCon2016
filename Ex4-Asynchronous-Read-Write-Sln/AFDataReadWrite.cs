@@ -15,6 +15,7 @@ namespace Ex4_Asynchronous_Read_Write_Sln
     {
         public static IDictionary<AFAttribute, AFValues> GetTotalsAsync(AFDatabase afDb)
         {
+            Console.WriteLine("Making async calls");
             AFAttributeList attributeList = GetAttributes(afDb);
 
             // Beginning of current month to beginning of today.
@@ -66,6 +67,7 @@ namespace Ex4_Asynchronous_Read_Write_Sln
 
         public static IDictionary<AFAttribute, AFValues> GetTotalsBulk(AFDatabase afDb)
         {
+            Console.WriteLine("Making bulk call");
             AFAttributeList attributeList = GetAttributes(afDb);
 
             Dictionary<AFAttribute, AFValues> totals = new Dictionary<AFAttribute, AFValues>();
@@ -155,7 +157,7 @@ namespace Ex4_Asynchronous_Read_Write_Sln
                      elemCategory: null,
                      elemTemplate: database.ElementTemplates["Feeder"],
                      elemType: AFElementType.Any,
-                     attrNameFilter: "Reactive Power",
+                     attrNameFilter: "Random Data",
                      attrCategory: null,
                      attrType: TypeCode.Empty,
                      searchFullHierarchy: true,
