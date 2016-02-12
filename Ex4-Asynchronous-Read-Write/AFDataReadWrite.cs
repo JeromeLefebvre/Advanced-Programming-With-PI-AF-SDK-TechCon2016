@@ -7,7 +7,7 @@ using OSIsoft.AF.Data;
 using OSIsoft.AF.PI;
 using OSIsoft.AF.Time;
 
-namespace Ex4_Asynchronous_Read_Write_Sln
+namespace Ex4_Asynchronous_Read_Write
 {
     public class AFDataReadWrite
     {
@@ -138,7 +138,7 @@ namespace Ex4_Asynchronous_Read_Write_Sln
                 return piSystem.Databases.DefaultDatabase;
         }
 
-        public static AFAttributeList GetAttributes(AFDatabase database)
+        private static AFAttributeList GetAttributes(AFDatabase database)
         {
             int startIndex = 0;
             int pageSize = 1000;

@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex2-Measuring-AF-Server-RPC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex4-Asynchronous-Read-Write-Sln", "Ex4-Asynchronous-Read-Write-Sln\Ex4-Asynchronous-Read-Write-Sln.csproj", "{A67E29D0-B02D-49EC-9105-4127FABDE38F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex4-Asynchronous-Read-Write", "Ex4-Asynchronous-Read-Write\Ex4-Asynchronous-Read-Write.csproj", "{D5289243-324D-4A3E-AC50-604097E695D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{A67E29D0-B02D-49EC-9105-4127FABDE38F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A67E29D0-B02D-49EC-9105-4127FABDE38F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A67E29D0-B02D-49EC-9105-4127FABDE38F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5289243-324D-4A3E-AC50-604097E695D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5289243-324D-4A3E-AC50-604097E695D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5289243-324D-4A3E-AC50-604097E695D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5289243-324D-4A3E-AC50-604097E695D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
