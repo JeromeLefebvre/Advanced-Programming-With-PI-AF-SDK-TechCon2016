@@ -13,72 +13,13 @@ namespace Ex4_Asynchronous_Read_Write
     {
         public static IDictionary<AFAttribute, AFValues> GetTotalsAsync(AFDatabase afDb)
         {
-            Console.WriteLine("Making async calls");
-            AFAttributeList attributeList = GetAttributes(afDb);
-
-            // Beginning of current month to beginning of today.
             Dictionary<AFAttribute, AFValues> totals = new Dictionary<AFAttribute, AFValues>();
-            AFTimeRange timeRange = new AFTimeRange(new AFTime(string.Format("{0}-{1}-01", DateTime.Now.Year, DateTime.Now.Month)), new AFTime("T"));
-            AFTimeSpan dayInterval = new AFTimeSpan(0, 0, 1);
-            List<Task<IDictionary<AFSummaryTypes, AFValues>>> processingList = new List<Task<IDictionary<AFSummaryTypes, AFValues>>>();
-            foreach (AFAttribute attribute in attributeList)
-            {
-                // Do not make the call if async is not supported
-                if ((attribute.SupportedDataMethods & AFDataMethods.Asynchronous) == 0)
-                    continue;
-
-                try
-                {
-                    processingList.Add(
-                    attribute.Data.SummariesAsync(timeRange, dayInterval, AFSummaryTypes.Total, AFCalculationBasis.TimeWeighted, AFTimestampCalculation.Auto));
-
-                    // periodically evaluate
-                    if (processingList.Count > Environment.ProcessorCount * 2)
-                    {
-                        Task.WhenAll(processingList.ToArray());
-                        foreach (var item in processingList)
-                        {
-                            WriteSummaryItem(item.Result[AFSummaryTypes.Total]);
-                        }
-
-                        processingList = new List<Task<IDictionary<AFSummaryTypes, AFValues>>>();
-                    }
-                }
-                catch (AggregateException ae)
-                {
-                    //if (ae.Flatten().InnerExceptions.Count == 1)
-                    Console.WriteLine("{0}: {1}", attribute.Name, ae.Flatten().InnerException.Message);
-                }
-            }
-
-            if (processingList.Count > 0)
-            {
-                Task.WhenAll(processingList.ToArray());
-                foreach (var item in processingList)
-                {
-                    WriteSummaryItem(item.Result[AFSummaryTypes.Total]);
-                }
-            }
-
             return totals;
         }
 
         public static IDictionary<AFAttribute, AFValues> GetTotalsBulk(AFDatabase afDb)
         {
-            Console.WriteLine("Making bulk call");
-            AFAttributeList attributeList = GetAttributes(afDb);
-
             Dictionary<AFAttribute, AFValues> totals = new Dictionary<AFAttribute, AFValues>();
-            AFTimeRange timeRange = new AFTimeRange(new AFTime(string.Format("{0}-{1}-01", DateTime.Now.Year, DateTime.Now.Month)), new AFTime("T"));
-            AFTimeSpan dayInterval = new AFTimeSpan(0, 0, 1);
-
-            PIPagingConfiguration pageConfig = new PIPagingConfiguration(PIPageType.TagCount, Environment.ProcessorCount * 2);
-            foreach (var item in attributeList.Data.Summaries(timeRange, dayInterval, AFSummaryTypes.Total, AFCalculationBasis.TimeWeighted, AFTimestampCalculation.Auto,
-                pageConfig))
-            {
-                WriteSummaryItem(item[AFSummaryTypes.Total]);
-            }
-
             return totals;
         }
 
@@ -94,37 +35,7 @@ namespace Ex4_Asynchronous_Read_Write
 
         public static int UpdateAttributeData(AFDatabase database)
         {
-            AFAttributeList attributeList = GetAttributes(database);
-
-            AFTimeRange timeRange = new AFTimeRange(new AFTime(string.Format("{0}-{1}-01", DateTime.Now.Year, DateTime.Now.Month)), new AFTime("T"));
-            AFTimeSpan hourInterval = new AFTimeSpan(0, 0, 0, 1);
-
-            // Question: What risk is run by the following code?
-            List<Task<AFErrors<AFValue>>> processWrites = new List<Task<AFErrors<AFValue>>>();
-            foreach (AFAttribute attribute in attributeList)
-            {
-                AFValues vals = GenerateValueSequence(attribute, timeRange.StartTime, timeRange.EndTime, hourInterval);
-                processWrites.Add(attribute.Data.UpdateValuesAsync(vals, AFUpdateOption.Insert, AFBufferOption.DoNotBuffer));
-            }
-
             int errorcount = 0;
-            try
-            {
-                Task.WaitAll(processWrites.ToArray());
-                foreach (var item in processWrites)
-                {
-                    AFErrors<AFValue> errors = item.Result;
-                    // Count PIPoint errors
-                    if (errors != null && errors.HasErrors)
-                        errorcount += errors.Errors.Count;
-
-                    // Report PI Server, AF Server errors
-                }
-            }
-            catch (AggregateException ae)
-            {
-            }
-
             return errorcount;
         }
 
