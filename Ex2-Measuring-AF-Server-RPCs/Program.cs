@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using OSIsoft.AF;
 using OSIsoft.AF.Asset;
 using OSIsoft.AF.Search;
@@ -12,22 +11,23 @@ namespace Ex2_Measuring_AF_Client_Performance
         static void Main(string[] args)
         {
             PISystem ps = PISystem.CreatePISystem("PISRV01");
-            AFDatabase db = ps.Databases["Feeder Voltage Monitoring"];
 
-            AFElementTemplate elemTemplate = db.ElementTemplates["Substation Transformer"];
+            //This is an example
+            //using (new AFProbe("FindElementsByAttribute", ps))
+            //{
+            //    AFDatabase db = ps.Databases["Feeder Voltage Monitoring"];
 
-            // This is an example
-            using (new AFProbe("FindElementsByAttribute", ps))
-            {
-                var avq = new[]
-                {
-                    new AFAttributeValueQuery(elemTemplate.AttributeTemplates["Model"], AFSearchOperator.Equal, "506A"),
-                };
+            //    AFElementTemplate elemTemplate = db.ElementTemplates["Substation Transformer"];
 
-                var elements = AFElement.FindElementsByAttribute(null, "*", avq, true, AFSortField.Name, AFSortOrder.Ascending, 100);
-            }
+            //    var avq = new[]
+            //    {
+            //        new AFAttributeValueQuery(elemTemplate.AttributeTemplates["Model"], AFSearchOperator.Equal, "506A"),
+            //    };
 
-            using (new AFProbe("FindElementsByAttribute", ps))
+            //    var elements = AFElement.FindElementsByAttribute(null, "*", avq, true, AFSortField.Name, AFSortOrder.Ascending, 100);
+            //}
+
+            using (new AFProbe("PrintAttributeCounts", ps))
             {
                 // Your code here
             }

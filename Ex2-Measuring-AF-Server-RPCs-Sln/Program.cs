@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Linq;
 using OSIsoft.AF;
+using OSIsoft.AF.Search;
 using OSIsoft.AF.Asset;
 using External;
 
@@ -10,22 +10,23 @@ namespace Ex2_Measuring_AF_Client_Performance_Sln
     {
         static void Main(string[] args)
         {
-            PISystem ps = PISystem.CreatePISystem("PISRV01");
-
-            string path = @"\Feeder Voltage Monitoring\Assets";
+            PISystem ps = PISystem.CreatePISystem("BSHANGE6430S");
 
             using (new AFProbe("PrintAttributeCounts", ps))
             {
- 
-                AFElement assets = AFElement.FindElementsByPath(new[] { path }, ps)[path];
+                AFDatabase db = ps.Databases["Feeder Voltage Monitoring"];
 
-                // Preload all elements so we don't do it one by one during element.Attributes.Count call later
-                AFNamedCollectionList<AFElement> elements = AFElement.LoadElementsToDepth(new[] { assets }.ToList(), true, 1, 100);
+                // Build search object
+                AFSearchToken searchToken = new AFSearchToken(
+                    filter: AFSearchFilter.Root,
+                    searchOperator: AFSearchOperator.Equal,
+                    value: db.Elements["Assets"].GetPath());
 
-                // Avoid temptation to use the below
-                // AFElements elements = assets.Elements;
+                AFElementSearch elementSearch = new AFElementSearch(db, "Feeders and Transformers", new[] { searchToken });
 
-                foreach (AFElement element in elements)
+                Console.WriteLine("Feeders and Transformers");
+                // Use full load: true to fully load the elements
+                foreach (AFElement element in elementSearch.FindElements(fullLoad: true))
                 {
                     Console.WriteLine("Element: {0}, # Attributes: {1}", element.Name, element.Attributes.Count);
                 }
