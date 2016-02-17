@@ -10,7 +10,7 @@ namespace Ex2_Measuring_AF_Client_Performance_Sln
     {
         static void Main(string[] args)
         {
-            PISystem ps = PISystem.CreatePISystem("BSHANGE6430S");
+            PISystem ps = PISystem.CreatePISystem("PISRV01");
 
             using (new AFProbe("PrintAttributeCounts", ps))
             {
