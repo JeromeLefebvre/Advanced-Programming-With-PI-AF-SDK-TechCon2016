@@ -7,17 +7,23 @@ using OSIsoft.AF.Data;
 
 namespace External
 {
+    public delegate void ProcessAFDataPipeEventDelegate(AFDataPipeEvent evt);
+
     public class AFDataObserver : IObserver<AFDataPipeEvent>, IDisposable
     {
         public AFAttributeList AttributeList { get; set; }
         public AFDataPipe DataPipe { get; set; }
 
-        private int _threadSleepTimeInMilliseconds = 5000;
+        private int _threadSleepTimeInMilliseconds;
 
-        public AFDataObserver(AFAttributeList attrList)
+        private ProcessAFDataPipeEventDelegate _processEvent;
+
+        public AFDataObserver(AFAttributeList attrList, ProcessAFDataPipeEventDelegate processEvent, int pollInterval = 5000)
         {
             AttributeList = attrList;
             DataPipe = new AFDataPipe();
+            _threadSleepTimeInMilliseconds = pollInterval;
+            _processEvent = processEvent;
         }
 
         public void Start()
@@ -45,18 +51,13 @@ namespace External
 
         public void OnNext(AFDataPipeEvent dpEvent)
         {
-            ProcessEvent(dpEvent);
+            _processEvent(dpEvent);
         }
 
         public void Dispose()
         {
             DataPipe.Dispose();
             DataPipe = null;
-        }
-
-        private void ProcessEvent(AFDataPipeEvent dpEvent)
-        {
-            // Do something with event
         }
     }
 }
