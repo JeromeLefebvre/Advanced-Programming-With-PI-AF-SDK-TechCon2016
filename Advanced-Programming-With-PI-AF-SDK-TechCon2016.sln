@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex3-Real-Time-Analytics-Sln", "Ex3-Real-Time-Analytics-Sln\Ex3-Real-Time-Analytics-Sln.csproj", "{1916F548-0AEE-4B9E-8634-7947070B2851}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex5-Real-Time-Analytics-Sln", "Ex3-Real-Time-Analytics-Sln\Ex5-Real-Time-Analytics-Sln.csproj", "{1916F548-0AEE-4B9E-8634-7947070B2851}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "External", "External\External.csproj", "{6BE86080-890F-4120-AF47-3869E1F49DE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex3-Real-Time-Analytics", "Ex3-Real-Time-Analytics\Ex3-Real-Time-Analytics.csproj", "{5FD5E6DC-8866-4AFF-A06B-32F03FA46825}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex5-Real-Time-Analytics", "Ex3-Real-Time-Analytics\Ex5-Real-Time-Analytics.csproj", "{5FD5E6DC-8866-4AFF-A06B-32F03FA46825}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex1-Finding-And-Loading-Assets", "Ex1-Finding-And-Loading-Assets\Ex1-Finding-And-Loading-Assets.csproj", "{3B050F5F-29F4-47CB-9DC7-E209798564F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex1-Finding-And-Loading-Assets-Sln", "Ex1-Finding-And-Loading-Assets-Sln\Ex1-Finding-And-Loading-Assets-Sln.csproj", "{10DF25D1-CCF0-4506-8F67-F1A4E12EC759}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex5-Using-Typed-AF-Value", "Ex5-Using-Typed-AF-Value\Ex5-Using-Typed-AF-Value.csproj", "{2784A85B-0171-4DB8-99E3-B9A7221C8D83}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex3-Using-Typed-AF-Value", "Ex5-Using-Typed-AF-Value\Ex3-Using-Typed-AF-Value.csproj", "{2784A85B-0171-4DB8-99E3-B9A7221C8D83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex5-Using-Typed-AF-Value-Sln", "Ex5-Using-Typed-AF-Value-Sln\Ex5-Using-Typed-AF-Value-Sln.csproj", "{6AA24328-9331-4D69-B7A1-C6A6995CC2E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex3-Using-Typed-AF-Value-Sln", "Ex5-Using-Typed-AF-Value-Sln\Ex3-Using-Typed-AF-Value-Sln.csproj", "{6AA24328-9331-4D69-B7A1-C6A6995CC2E9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex2-Measuring-AF-Server-RPCs", "Ex2-Measuring-AF-Server-RPCs\Ex2-Measuring-AF-Server-RPCs.csproj", "{DDEA5084-9F07-435F-9D1E-7A93764302C9}"
 EndProject

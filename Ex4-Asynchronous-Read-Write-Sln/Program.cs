@@ -21,14 +21,20 @@ namespace Ex4_Asynchronous_Read_Write_Sln
 
             AFAttributeList attrList = GetAttributes(database);
 
-            Task<IList<IDictionary<AFSummaryTypes, AFValue>>> summariesTask = AFAsyncDataReader.GetSummariesAsync(attrList);
-            Console.WriteLine("Retrieving summaries");
-            Console.WriteLine();
-
-            IList<IDictionary<AFSummaryTypes,AFValue>> summaries = summariesTask.Result;
-            foreach (var summary in summaries)
+            try
             {
-                WriteSummaryItem(summary);
+                Task<IList<IDictionary<AFSummaryTypes, AFValue>>> summariesTask = AFAsyncDataReader.GetSummariesAsync(attrList);
+
+                // Wait for the summaries result
+                IList<IDictionary<AFSummaryTypes, AFValue>> summaries = summariesTask.Result;
+                foreach (var summary in summaries)
+                {
+                    WriteSummaryItem(summary);
+                }
+            }
+            catch (AggregateException ae)
+            {
+                Console.WriteLine("{0}", ae.Flatten().InnerException.Message);
             }
 
             Console.WriteLine("Press any key to quit");

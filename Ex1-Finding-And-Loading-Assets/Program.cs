@@ -22,7 +22,8 @@ namespace Ex1_Finding_And_Loading_Assets
             IList<AFElement> elementsLoaded = AFElementLoader.LoadElements(elemTemp, attributesToLoad);
 
             var end = GC.GetTotalMemory(forceFullCollection: true);
-            // Keep below 260 kB
+
+            // Keep below 260 KB
             Console.WriteLine("elementsLoaded Memory: {0:N0}", (end - begin));
 
             Console.WriteLine("Press any key to continue");

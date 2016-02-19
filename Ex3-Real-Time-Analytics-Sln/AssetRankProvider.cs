@@ -7,7 +7,7 @@ using OSIsoft.AF;
 using OSIsoft.AF.Asset;
 using OSIsoft.AF.Data;
 
-namespace Ex3_Real_Time_Analytics_Sln
+namespace Ex5_Real_Time_Analytics_Sln
 {
     public class AssetRankProvider : IObserver<AFDataPipeEvent>, IRankProvider
     {
@@ -122,7 +122,7 @@ namespace Ex3_Real_Time_Analytics_Sln
             }
         }
 
-        public IList<AFRankedValue> GetRankings()
+        public IList<AFRankedValue> GetTopNElements(int N)
         {   
             // We will perform the sort on demand, operating under the assumption that requests for rankings
             // occur less frequently than the event arrival rate.
@@ -137,7 +137,7 @@ namespace Ex3_Real_Time_Analytics_Sln
             });
 
             int r = 1;
-            return tempList.Select(kvp => new AFRankedValue { Value = kvp.Value, Ranking = r++ }).ToList();
+            return tempList.Select(kvp => new AFRankedValue { Value = kvp.Value, Ranking = r++ }).Take(N).ToList();
         }
 
         public void Dispose()

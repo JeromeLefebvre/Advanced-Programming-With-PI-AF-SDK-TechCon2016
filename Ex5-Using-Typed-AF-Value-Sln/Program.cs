@@ -4,7 +4,7 @@ using System.Linq;
 using OSIsoft.AF.Asset;
 using OSIsoft.AF.Time;
 
-namespace Ex5_New_Features_In_PI_AF_SDK_Sln
+namespace Ex3_Using_Typed_AF_Value_Sln
 {
     class Program
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using OSIsoft.AF.Asset;
 
-namespace Ex5_New_Features_In_PI_AF_SDK
+namespace Ex3_Using_Typed_AF_Value
 {
     public class AFValueComparer : IComparer<AFValue>
     {

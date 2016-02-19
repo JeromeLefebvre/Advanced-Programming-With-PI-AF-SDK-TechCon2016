@@ -5,7 +5,7 @@ using System.Threading;
 using OSIsoft.AF;
 using OSIsoft.AF.Asset;
 
-namespace Ex3_Real_Time_Analytics_Sln
+namespace Ex5_Real_Time_Analytics_Sln
 {
     class Program
     {
@@ -19,16 +19,16 @@ namespace Ex3_Real_Time_Analytics_Sln
 
             rankProvider.Start();
 
-            // Get rankings every 5 seconds. Do this 10 times.
+            // Get top 3 Feeders every 5 seconds. Do this 10 times.
             foreach (int i in Enumerable.Range(0,10))
-            {
-                Thread.Sleep(5000);
-                IList<AFRankedValue> rankings = rankProvider.GetRankings();
+            {           
+                IList<AFRankedValue> rankings = rankProvider.GetTopNElements(3);
                 foreach (var r in rankings)
                 {
                     Console.WriteLine($"{r.Ranking} {r.Value.Attribute.Element.Name} {r.Value.Timestamp} {r.Value.Value}");
                 }
                 Console.WriteLine();
+                Thread.Sleep(5000);
             }
 
             // Remove the server-side signup.

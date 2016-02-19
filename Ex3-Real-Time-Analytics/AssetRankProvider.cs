@@ -7,7 +7,7 @@ using OSIsoft.AF;
 using OSIsoft.AF.Asset;
 using OSIsoft.AF.Data;
 
-namespace Ex3_Real_Time_Analytics
+namespace Ex5_Real_Time_Analytics
 {
     public class AssetRankProvider : IObserver<AFDataPipeEvent>, IRankProvider
     {
@@ -22,6 +22,7 @@ namespace Ex3_Real_Time_Analytics
             DataPipe = new AFDataPipe();
 
             // Your code here
+            // 1. Initialize an internal data structure to store the latest values keyed by element
         }
 
         public void Start()
@@ -48,13 +49,15 @@ namespace Ex3_Real_Time_Analytics
         public void OnNext(AFDataPipeEvent dpEvent)
         {
             // Your code here
+            // 1. Process the AFDataPipeEvent and add the returned AFValue to the internal data structure defined earlier.
         }
 
-        public IList<AFRankedValue> GetRankings()
+        public IList<AFRankedValue> GetTopNElements(int N)
         {
             IList<AFRankedValue> rankings = null;
 
             // Your code here
+            // 1. Return top N Feeder elements (as AFRankedValue) sorted by their current Reactive Power values. 
 
             return rankings;
         }
@@ -62,6 +65,7 @@ namespace Ex3_Real_Time_Analytics
         public void Dispose()
         {
             // Your code here
+            // 1. Dispose of the AFDataPipe
         }
 
         private AFAttributeList GetAttributes()

@@ -1,6 +1,6 @@
 ﻿using OSIsoft.AF.Asset;
 
-namespace Ex3_Real_Time_Analytics_Sln
+namespace Ex5_Real_Time_Analytics_Sln
 {
     public class AFRankedValue
     {

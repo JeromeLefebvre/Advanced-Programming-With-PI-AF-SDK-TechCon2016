@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using OSIsoft.AF.Asset;
 using OSIsoft.AF.Data;
 
-namespace Ex3_Real_Time_Analytics_Sln
+namespace Ex5_Real_Time_Analytics_Sln
 {
     interface IRankProvider : IDisposable
     {
@@ -17,6 +17,6 @@ namespace Ex3_Real_Time_Analytics_Sln
         void Start();
 
         // Returns the rankings
-        IList<AFRankedValue> GetRankings();
+        IList<AFRankedValue> GetTopNElements(int N);
     }
 }
