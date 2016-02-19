@@ -5,13 +5,13 @@ using OSIsoft.AF;
 using OSIsoft.AF.Asset;
 using OSIsoft.AF.Data;
 
-namespace Ex4_Asynchronous_Read_Write_Sln
+namespace Ex4_Asynchronous_Data_Access_Sln
 {
     class Program
     {
         static void Main(string[] args)
         {
-            PISystem piSystem = PISystem.CreatePISystem("BSHANGE6430S");
+            PISystem piSystem = PISystem.CreatePISystem("PISRV01");
 
             AFDatabase database;
             if (piSystem != null)

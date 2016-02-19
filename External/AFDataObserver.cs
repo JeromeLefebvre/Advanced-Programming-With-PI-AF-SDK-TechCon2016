@@ -11,11 +11,16 @@ namespace External
 
     public class AFDataObserver : IObserver<AFDataPipeEvent>, IDisposable
     {
+        // The list of attributes to monitor
         public AFAttributeList AttributeList { get; set; }
+
+        // The underlying AFDataPipe that provides incoming values
         public AFDataPipe DataPipe { get; set; }
 
+        // Interval to wait in between calling the data pipe
         private int _threadSleepTimeInMilliseconds;
 
+        // The client provides this delegate to call during OnNext()
         private ProcessAFDataPipeEventDelegate _processEvent;
 
         public AFDataObserver(AFAttributeList attrList, ProcessAFDataPipeEventDelegate processEvent, int pollInterval = 5000)
@@ -26,23 +31,33 @@ namespace External
             _processEvent = processEvent;
         }
 
-        public void Start()
+        public AFErrors<AFAttribute> Start()
         {
+            // Subscribe this object (Observer) to the AFDataPipe (Observable)
             DataPipe.Subscribe(this);
 
+            // The data pipe will provide updates from attributes inside AttributeList
             AFErrors<AFAttribute> errors = DataPipe.AddSignups(AttributeList);
 
-            // This task loop calls GetObserverEvents every 5 seconds
-            Task mainTask = Task.Run(() =>
+            if (errors != null)
             {
-                bool hasMoreEvents = false;
-                while (true)
+                return errors;
+            }
+            else
+            {
+                // This task loop calls GetObserverEvents every 5 seconds
+                Task mainTask = Task.Run(() =>
                 {
-                    AFErrors<AFAttribute> results = DataPipe.GetObserverEvents(out hasMoreEvents);
-                    if (!hasMoreEvents)
-                        Thread.Sleep(_threadSleepTimeInMilliseconds);
-                }
-            });
+                    bool hasMoreEvents = false;
+                    while (true)
+                    {
+                        AFErrors<AFAttribute> results = DataPipe.GetObserverEvents(out hasMoreEvents);
+                        if (!hasMoreEvents)
+                            Thread.Sleep(_threadSleepTimeInMilliseconds);
+                    }
+                });
+                return null;
+            }
         }
 
         public void OnCompleted() { }
@@ -51,6 +66,7 @@ namespace External
 
         public void OnNext(AFDataPipeEvent dpEvent)
         {
+            // AFDataPipeEvent contains the AFValue representing the incoming event
             _processEvent(dpEvent);
         }
 

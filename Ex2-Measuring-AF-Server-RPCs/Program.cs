@@ -1,7 +1,7 @@
 ﻿using System;
 using OSIsoft.AF;
-using OSIsoft.AF.Asset;
 using OSIsoft.AF.Search;
+using OSIsoft.AF.Asset;
 using External;
 
 namespace Ex2_Measuring_AF_Client_Performance
