@@ -42,7 +42,7 @@ namespace Ex4_Asynchronous_Data_Access_Sln
             return await Task.WhenAll(tasks);
         }
 
-        public static async Task<IList<IDictionary<AFSummaryTypes, AFValue>>> GetSummariesAsyncThrottled(AFAttributeList attributeList)
+        public static async Task<IList<IDictionary<AFSummaryTypes, AFValue>>> GetSummariesAsyncThrottled(AFAttributeList attributeList, int numConcurrent)
         {
             // Use asynchronous semaphore pattern (e.g. SemaphoreSlim.WaitAsync()) to throttle the calls
 
@@ -51,8 +51,8 @@ namespace Ex4_Asynchronous_Data_Access_Sln
             AFSummaryTypes mySummaries = AFSummaryTypes.Minimum | AFSummaryTypes.Maximum | AFSummaryTypes.Average | AFSummaryTypes.Total;
             AFTimeRange timeRange = new AFTimeRange(new AFTime("*-1d"), new AFTime("*"));
 
-            // Example: Limit to 20 concurrent async I/O operations.
-            SemaphoreSlim throttler = new SemaphoreSlim(initialCount: 20);
+            // Example: Limit to numConcurrent concurrent async I/O operations.
+            SemaphoreSlim throttler = new SemaphoreSlim(initialCount: numConcurrent);
 
             Task<IDictionary<AFSummaryTypes, AFValue>>[] tasks = attributeList
                 // Do not make the call if async is not supported
@@ -88,7 +88,7 @@ namespace Ex4_Asynchronous_Data_Access_Sln
 
         public static async Task<IList<IDictionary<AFSummaryTypes, AFValue>>> GetSummariesAsyncWithTimeout(AFAttributeList attributeList, int timeoutInMilliseconds)
         {
-            // Use asynchronous semaphore pattern (e.g. SemaphoreSlim.WaitAsync()) to throttle the calls
+            // Use a "competing tasks" pattern to place timeout on multiple async requests
 
             Console.WriteLine("Calling GetSummariesAsyncWithTimeout");
 
