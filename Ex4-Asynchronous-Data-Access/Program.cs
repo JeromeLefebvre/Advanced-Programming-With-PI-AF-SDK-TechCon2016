@@ -5,7 +5,7 @@ using OSIsoft.AF;
 using OSIsoft.AF.Asset;
 using OSIsoft.AF.Data;
 
-namespace Ex4_Asynchronous_Read_Write
+namespace Ex4_Asynchronous_Data_Access
 {
     class Program
     {

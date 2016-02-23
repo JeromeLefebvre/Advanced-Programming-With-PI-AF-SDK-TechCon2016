@@ -7,7 +7,7 @@ using OSIsoft.AF.Asset;
 using OSIsoft.AF.Data;
 using OSIsoft.AF.Time;
 
-namespace Ex4_Asynchronous_Read_Write
+namespace Ex4_Asynchronous_Data_Access
 {
     public class AFAsyncDataReader
     {
