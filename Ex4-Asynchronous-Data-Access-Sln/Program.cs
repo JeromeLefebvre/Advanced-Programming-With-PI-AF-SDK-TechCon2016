@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using OSIsoft.AF;
 using OSIsoft.AF.Asset;
 using OSIsoft.AF.Data;
+using External;
 
 namespace Ex4_Asynchronous_Data_Access_Sln
 {
@@ -11,15 +12,9 @@ namespace Ex4_Asynchronous_Data_Access_Sln
     {
         static void Main(string[] args)
         {
-            PISystem piSystem = PISystem.CreatePISystem("PISRV01");
+            AFDatabase db = ConnectionHelper.GetDatabase("PISRV01", "Feeder Voltage Monitoring");
 
-            AFDatabase database;
-            if (piSystem != null)
-                database = piSystem.Databases["Feeder Voltage Monitoring"];
-            else
-                database = piSystem.Databases.DefaultDatabase;
-
-            AFAttributeList attrList = GetAttributes(database);
+            AFAttributeList attrList = GetAttributes(db);
 
             try
             {

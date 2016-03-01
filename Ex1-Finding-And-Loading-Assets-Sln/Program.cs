@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using OSIsoft.AF;
 using OSIsoft.AF.Asset;
+using External;
 
 namespace Ex1_Finding_And_Loading_Assets_Sln
 {
@@ -10,8 +11,7 @@ namespace Ex1_Finding_And_Loading_Assets_Sln
     {
         static void Main(string[] args)
         {
-            PISystem ps = PISystem.CreatePISystem("PISRV01"); // This factory method is new in 2.7.5
-            AFDatabase db = ps.Databases["Feeder Voltage Monitoring"];
+            AFDatabase db = ConnectionHelper.GetDatabase("PISRV01", "Feeder Voltage Monitoring");
 
             AFElementTemplate elemTemp = db.ElementTemplates["Feeder"];
             IList<string> attributesToLoad = new[] { "Reactive Power", "Total Current" }.ToList();

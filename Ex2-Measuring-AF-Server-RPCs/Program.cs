@@ -10,6 +10,7 @@ namespace Ex2_Measuring_AF_Server_RPCs
     {
         static void Main(string[] args)
         {
+            // This factory method is new in 2.8.
             PISystem ps = PISystem.CreatePISystem("PISRV01");
 
             //This is an example
