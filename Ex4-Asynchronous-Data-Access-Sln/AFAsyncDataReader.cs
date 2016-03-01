@@ -15,9 +15,6 @@ namespace Ex4_Asynchronous_Data_Access_Sln
         {
             Console.WriteLine("Calling GetSummariesAsync");
 
-            AFSummaryTypes mySummaries = AFSummaryTypes.Minimum | AFSummaryTypes.Maximum | AFSummaryTypes.Average | AFSummaryTypes.Total;
-            AFTimeRange timeRange = new AFTimeRange(new AFTime("*-1d"), new AFTime("*"));
-
             Task<IDictionary<AFSummaryTypes, AFValue>>[] tasks = attributeList
                 // Do not make the call if async is not supported
                 .Where(attr => (attr.SupportedDataMethods & AFDataMethods.Asynchronous) == AFDataMethods.Asynchronous)
@@ -25,6 +22,9 @@ namespace Ex4_Asynchronous_Data_Access_Sln
                 {
                     try
                     {
+                        AFSummaryTypes mySummaries = AFSummaryTypes.Minimum | AFSummaryTypes.Maximum | AFSummaryTypes.Average | AFSummaryTypes.Total;
+                        AFTimeRange timeRange = new AFTimeRange(new AFTime("*-1d"), new AFTime("*"));
+                    
                         return await attr.Data.SummaryAsync(
                             timeRange: timeRange,
                             summaryType: mySummaries,
@@ -48,9 +48,6 @@ namespace Ex4_Asynchronous_Data_Access_Sln
 
             Console.WriteLine("Calling GetSummariesAsyncThrottled");
 
-            AFSummaryTypes mySummaries = AFSummaryTypes.Minimum | AFSummaryTypes.Maximum | AFSummaryTypes.Average | AFSummaryTypes.Total;
-            AFTimeRange timeRange = new AFTimeRange(new AFTime("*-1d"), new AFTime("*"));
-
             // Example: Limit to numConcurrent concurrent async I/O operations.
             SemaphoreSlim throttler = new SemaphoreSlim(initialCount: numConcurrent);
 
@@ -64,6 +61,9 @@ namespace Ex4_Asynchronous_Data_Access_Sln
 
                     try
                     {
+                        AFSummaryTypes mySummaries = AFSummaryTypes.Minimum | AFSummaryTypes.Maximum | AFSummaryTypes.Average | AFSummaryTypes.Total;
+                        AFTimeRange timeRange = new AFTimeRange(new AFTime("*-1d"), new AFTime("*"));
+
                         return await attr.Data.SummaryAsync(
                             timeRange: timeRange,
                             summaryType: mySummaries,
@@ -97,9 +97,6 @@ namespace Ex4_Asynchronous_Data_Access_Sln
             CancellationTokenSource ctsForTimer = new CancellationTokenSource();
             CancellationToken tokenForTimer = ctsForTimer.Token;
 
-            AFSummaryTypes mySummaries = AFSummaryTypes.Minimum | AFSummaryTypes.Maximum | AFSummaryTypes.Average | AFSummaryTypes.Total;
-            AFTimeRange timeRange = new AFTimeRange(new AFTime("*-1d"), new AFTime("*"));
-
             Task<IDictionary<AFSummaryTypes, AFValue>>[] tasks = attributeList
                 // Do not make the call if async is not supported
                 .Where(attr => (attr.SupportedDataMethods & AFDataMethods.Asynchronous) == AFDataMethods.Asynchronous)
@@ -107,6 +104,9 @@ namespace Ex4_Asynchronous_Data_Access_Sln
                 {
                     try
                     {
+                        AFSummaryTypes mySummaries = AFSummaryTypes.Minimum | AFSummaryTypes.Maximum | AFSummaryTypes.Average | AFSummaryTypes.Total;
+                        AFTimeRange timeRange = new AFTimeRange(new AFTime("*-1d"), new AFTime("*"));
+
                         return await attr.Data.SummaryAsync(
                             timeRange: timeRange,
                             summaryType: mySummaries,
