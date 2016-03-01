@@ -44,7 +44,7 @@ namespace Ex4_Asynchronous_Data_Access_Sln
 
         public static async Task<IList<IDictionary<AFSummaryTypes, AFValue>>> GetSummariesAsyncThrottled(AFAttributeList attributeList, int numConcurrent)
         {
-            // Use asynchronous semaphore pattern (e.g. SemaphoreSlim.WaitAsync()) to throttle the calls
+            // Use "asynchronous semaphore" pattern (e.g. SemaphoreSlim.WaitAsync()) to throttle the calls
 
             Console.WriteLine("Calling GetSummariesAsyncThrottled");
 
