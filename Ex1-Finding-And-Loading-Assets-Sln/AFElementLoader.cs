@@ -28,21 +28,28 @@ namespace Ex1_Finding_And_Loading_Assets_Sln
                                 totalCount: out totalCount);
 
                 // If there are no elements, break the process
-                if (baseElements.Count() == 0)
+                if (baseElements.Count == 0)
                     break;
 
-                List<AFElement> elements = baseElements.Select(elm => (AFElement)elm).ToList();
+                IEnumerable<AFElement> elements = baseElements.OfType<AFElement>();
 
                 var elementGroupings = elements.GroupBy(elm => elm.Template);
                 foreach (var item in elementGroupings)
                 {
-                    List<AFAttributeTemplate> attrTemplates = attributesToLoad.Select(atr => GetLastAttributeTemplateOverride(item.Key, atr)).ToList();
-                    AFElement.LoadAttributes(item.ToList(), attrTemplates);
-                }
+                    // The passed in attribute template name may belong to a base element template.
+                    // GetLastAttributeTemplateOverride searches upwards the template inheritance chain
+                    // until it finds the desired attribute template.
+                    List<AFAttributeTemplate> attrTemplates = attributesToLoad
+                        .Select(atr => GetLastAttributeTemplateOverride(item.Key, atr))
+                        .Where(atr => atr != null)
+                        .ToList();
 
-                results.AddRange(elements);
+                    List<AFElement> elementsToLoad = item.ToList();
+                    AFElement.LoadAttributes(elementsToLoad, attrTemplates);
+                    results.AddRange(elementsToLoad);
+                }     
 
-                startIndex += baseElements.Count();
+                startIndex += baseElements.Count;
             } while (startIndex < totalCount);
 
             return results;

@@ -35,6 +35,7 @@ namespace External
             var diffClient = AFRpcMetric.SubtractList(endClient, _startClient);
             var diffServer = AFRpcMetric.SubtractList(endServer, _startServer);
 
+            long numCalls = 0;
             Console.WriteLine("RPC Metrics");
             foreach (var clientMetric in diffClient)
             {
@@ -42,6 +43,7 @@ namespace External
                 {
                     if (clientMetric.Name == serverMetric.Name)
                     {
+                        numCalls += clientMetric.Count;
                         Console.WriteLine("   {0}: {1} calls.  {2} ms/call on client. {3} ms/call on server.  Delta: {4} ms/call",
                             clientMetric.Name,
                             clientMetric.Count,
@@ -52,6 +54,8 @@ namespace External
                     }
                 }
             }
+            Console.WriteLine();
+            Console.WriteLine("Total RPCs: {0}", numCalls);
         }
     }
 }

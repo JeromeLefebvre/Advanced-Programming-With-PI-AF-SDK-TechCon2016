@@ -11,7 +11,7 @@ namespace Ex2_Measuring_AF_Server_RPCs_Sln
         static void Main(string[] args)
         {
             // This factory method is new in 2.8.
-            PISystem ps = PISystem.CreatePISystem("PISRV01");
+            PISystem ps = PISystem.CreatePISystem("bshange6430s");
 
             using (new AFProbe("PrintAttributeCounts", ps))
             {
