@@ -12,7 +12,7 @@ namespace Ex4_Asynchronous_Data_Access_Sln
     {
         static void Main(string[] args)
         {
-            AFDatabase db = ConnectionHelper.GetDatabase("PISRV01", "Feeder Voltage Monitoring");
+            AFDatabase db = ConnectionHelper.GetDatabase("localhost", "Feeder Voltage Monitoring");
 
             AFAttributeList attrList = GetAttributes(db);
 

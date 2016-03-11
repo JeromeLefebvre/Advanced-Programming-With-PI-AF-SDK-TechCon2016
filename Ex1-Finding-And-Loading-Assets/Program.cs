@@ -11,7 +11,7 @@ namespace Ex1_Finding_And_Loading_Assets
     {
         static void Main(string[] args)
         {
-            AFDatabase db = ConnectionHelper.GetDatabase("PISRV01", "Feeder Voltage Monitoring");
+            AFDatabase db = ConnectionHelper.GetDatabase("localhost", "Feeder Voltage Monitoring");
 
             AFElementTemplate elemTemp = db.ElementTemplates["Feeder"];
             IList<string> attributesToLoad = new[] { "Reactive Power", "Total Current" }.ToList();

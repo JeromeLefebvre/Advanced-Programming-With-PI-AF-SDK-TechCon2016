@@ -12,7 +12,7 @@ namespace Ex5_Real_Time_Analytics
     {
         static void Main(string[] args)
         {
-            AFDatabase db = ConnectionHelper.GetDatabase("PISRV01", "Feeder Voltage Monitoring");
+            AFDatabase db = ConnectionHelper.GetDatabase("localhost", "Feeder Voltage Monitoring");
 
             AFAttributeTemplate attrTemp = db.ElementTemplates["Feeder"].AttributeTemplates["Reactive Power"];
 
