@@ -14,7 +14,7 @@ namespace Ex1_Finding_And_Loading_Assets_Sln
             AFDatabase db = ConnectionHelper.GetDatabase("localhost", "Feeder Voltage Monitoring");
 
             AFElementTemplate elemTemp = db.ElementTemplates["Feeder"];
-            IList<string> attributesToLoad = new[] { "Reactive Power", "Total Current" }.ToList();
+            IList<string> attributesToLoad = new[] { "Reactive Power", "Total Current" };
 
             GC.Collect(2, GCCollectionMode.Forced, blocking: true);
             long begin = GC.GetTotalMemory(forceFullCollection: true);

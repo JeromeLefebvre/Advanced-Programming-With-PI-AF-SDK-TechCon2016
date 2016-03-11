@@ -15,26 +15,22 @@ namespace Ex1_Finding_And_Loading_Assets_Sln
             int pageSize = 1000;
 
             List<AFElement> results = new List<AFElement>();
+            AFNamedCollectionList<AFBaseElement> baseElements;
 
             // Paging pattern
             do
             {
-                var baseElements = elementTemplate.FindInstantiatedElements(
-                                includeDerived: true,
-                                sortField: AFSortField.Name,
-                                sortOrder: AFSortOrder.Ascending,
-                                startIndex: startIndex,
-                                maxCount: pageSize,
-                                totalCount: out totalCount);
-
-                // If there are no elements, break the process
-                if (baseElements.Count == 0)
-                    break;
+                baseElements = elementTemplate.FindInstantiatedElements(includeDerived: true,
+                                                                        sortField: AFSortField.Name,
+                                                                        sortOrder: AFSortOrder.Ascending,
+                                                                        startIndex: startIndex,
+                                                                        maxCount: pageSize,
+                                                                        totalCount: out totalCount);
 
                 IEnumerable<AFElement> elements = baseElements.OfType<AFElement>();
 
-                var elementGroupings = elements.GroupBy(elm => elm.Template);
-                foreach (var item in elementGroupings)
+                IEnumerable<IGrouping<AFElementTemplate, AFElement>> elementGroupings = elements.GroupBy(elm => elm.Template);
+                foreach (IGrouping<AFElementTemplate, AFElement> item in elementGroupings)
                 {
                     // The passed in attribute template name may belong to a base element template.
                     // GetLastAttributeTemplateOverride searches upwards the template inheritance chain
@@ -50,8 +46,7 @@ namespace Ex1_Finding_And_Loading_Assets_Sln
                 }     
 
                 startIndex += baseElements.Count;
-            } while (startIndex < totalCount);
-
+            } while (startIndex < totalCount && baseElements.Count != 0);
             return results;
         }
 
@@ -59,19 +54,10 @@ namespace Ex1_Finding_And_Loading_Assets_Sln
         {
             if (elmTemplate == null)
                 throw new ArgumentNullException("elmTemplate");
+                  
+            AFAttributeTemplate attrTemplate = elmTemplate.AttributeTemplates[attributeName];
 
-            AFElementTemplate currElementTemplate = elmTemplate;
-            do
-            {
-                var attrTemplate = currElementTemplate.AttributeTemplates[attributeName];
-
-                if (attrTemplate != null)
-                    return attrTemplate;
-                else
-                    currElementTemplate = currElementTemplate.BaseTemplate;
-            } while (currElementTemplate != null);
-
-            return null;
+            return attrTemplate == null ? GetLastAttributeTemplateOverride(elmTemplate.BaseTemplate, attributeName) : attrTemplate;
         }
     }
 }
